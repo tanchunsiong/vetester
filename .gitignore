@@ -1,0 +1,16 @@
+# Build results
+[Bb]in/
+[Oo]bj/
+App_Data/
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+
+# ASP.NET
+*.csproj.user
+
+# Archives
+*.htm.bak
+backup*.htm
