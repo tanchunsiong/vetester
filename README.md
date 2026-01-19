@@ -121,7 +121,7 @@ MIT License
 
 ## Links
 
-- Blog post: [www.tanchunsiong.com](https://www.tanchunsiong.com)
+- Blog post: [VETester: Georeferenced Image Overlays on Bing Maps](https://www.tanchunsiong.com/2008/11/vetester-georeferenced-image-overlays-on-bing-maps/)
 - GitHub: [github.com/tanchunsiong](https://github.com/tanchunsiong)
 - LinkedIn: [linkedin.com/in/tanchunsiong](https://linkedin.com/in/tanchunsiong)
 - X: [x.com/tanchunsiong](https://x.com/tanchunsiong)
