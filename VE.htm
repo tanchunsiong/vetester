@@ -1,0 +1,71 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <title></title>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+     
+    
+      
+      <script type="text/javascript" src="http://dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.1"></script>
+      <script type="text/javascript">
+          var map = null;
+          var imageUpperLeftCornerLatitude = 1.474065;
+          var imageUpperLeftCornerLongitude = 104.121552;
+          var originalHeight = 3000;
+          var originalWidth = 1800;
+          
+         
+          
+          
+          function GetMap() {
+              map = new VEMap('myMap');
+              map.LoadMap(new VELatLong(1.474065, 104.121552), 10, 'r', false);
+             
+              var imageLatLon = map.LatLongToPixel(new VELatLong(imageUpperLeftCornerLatitude, imageUpperLeftCornerLongitude));
+              var imageOverlay = document.getElementById('overlay');
+              imageOverlay.style.top = imageLatLon.y;
+              imageOverlay.style.left = imageLatLon.x;
+              
+              var VElyrs = document.getElementById('VELayerListDiv');
+      
+              VElyrs.appendChild(imageOverlay);
+
+              map.AttachEvent('onendzoom', RedrawImage);
+              map.AttachEvent('onstartzoom', HideImage);
+          }
+
+          function HideImage() {
+              var imageOverlay = document.getElementById('overlay');
+     
+              imageOverlay.style.visibility = 'hidden';
+          }
+
+
+          function RedrawImage() {
+              var image
+              var imageZoomLevel = 7;
+              var imageOverlay = document.getElementById('overlay');
+              var currentZoomLevel = map.GetZoomLevel();
+              imageOverlay.width = Math.round(originalWidth * (Math.pow(2, (currentZoomLevel - imageZoomLevel))));
+              imageOverlay.height = Math.round(originalHeight * (Math.pow(2, (currentZoomLevel - imageZoomLevel))));
+              var imageLatLon = map.LatLongToPixel(new VELatLong(imageUpperLeftCornerLatitude, imageUpperLeftCornerLongitude));
+              imageOverlay.style.top = imageLatLon.y;
+              imageOverlay.style.left = imageLatLon.x;
+              imageOverlay.style.visibility = 'hidden';
+          }
+          
+          
+          function DeleteTileLayer() {
+            
+          } 
+      </script>
+   </head>
+   <body onload="GetMap();">
+    <img src="http://labs.innovativesingapore.com/smsgateway/finalimage.png" id="overlay" style="z-index:1000; opacity: 0.7; filter: alpha(opacity=70);position:absolute;left:20px;top:20px"/>
+      <div id='myMap' style= position:relative; width:400px; height:400px;"></div>
+      <a href="#" onclick="DeleteTileLayer();">Remove the tile layer</a>
+ 
+   
+  </body>
+</html>
